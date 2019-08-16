@@ -1,0 +1,15 @@
+# Use at docker build 
+# --build-arg ssh_path=${<PATH_TO_SSH_KEY>}
+
+FROM python:3.6
+
+ENV KNOWLEDGE_REPO /app
+#ARG ssh_path
+
+COPY . /app
+
+#COPY ssh_path /home/user/.ssh
+
+RUN pip install knowledge-repo[all]
+
+ENTRYPOINT bash -c knowledge_repo runserver
